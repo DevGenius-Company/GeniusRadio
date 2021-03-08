@@ -41,15 +41,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
         baseColor: Color.fromRGBO(248,247,247,1),
         shadowLightColor: Colors.white,
+        shadowDarkColor: Colors.grey[400],
         accentColor: Colors.cyan,
-        depth: 6,
-        intensity: 0.5,
+        depth: 10,
+        intensity: 2,
       ),
       child: Scaffold(
         backgroundColor: Color.fromRGBO(248,247,247,1),
@@ -62,39 +65,58 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.all(16),
               child: Row(
                 children: [
-                  NeumorphicButton(
-                      padding: EdgeInsets.all(0),
-                      style: NeumorphicStyle(
-                        shadowLightColor: Colors.white,
-                        surfaceIntensity: 0.15,
-                        boxShape: NeumorphicBoxShape.circle(),
-                        shape: NeumorphicShape.flat,
-                      ),
-                      child: CircleAvatar(radius:40,backgroundImage: Image.network("https://avatars.githubusercontent.com/u/80033394?s=400&u=c7ab6ed6420f6a3bfd7a06b77823e6330a4de7f4&v=4").image,),
-                      onPressed: () {}),
+                  Container(
+                    height: 80,
+                    width: 80,
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: NeumorphicButton(
+                          padding: EdgeInsets.all(4),
+                          style: NeumorphicStyle(
+                            boxShape: NeumorphicBoxShape.circle()
+                          ),
+                          child: Hero(tag: 'devGenius',child: CircleAvatar(backgroundImage: Image.network("https://avatars.githubusercontent.com/u/80033394?s=400&u=c7ab6ed6420f6a3bfd7a06b77823e6330a4de7f4&v=4").image,)),
+                          onPressed: () {}),
+                    ),
+                  ),
                   Spacer(),
-                  NeumorphicButton(
-                      style: NeumorphicStyle(
-                        surfaceIntensity: 0.15,
-                        boxShape: NeumorphicBoxShape.circle(),
-                        shadowLightColor: Colors.white,
-                        shape: NeumorphicShape.flat,
-                      ),
-                      child: Icon(Icons.share_outlined,size: 40,color: Color.fromRGBO(26,41,75,1),),
-                      onPressed: () {}),
+                  Container(
+                    height: 80,
+                    width: 80,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: NeumorphicButton(
+                          style: NeumorphicStyle(
+                            boxShape: NeumorphicBoxShape.circle()
+                          ),
+                          child: Icon(Icons.share_outlined,color: Color.fromRGBO(26,41,75,1),),
+                          onPressed: () {}),
+                    ),
+                  ),
+
                 ],
               ),
             ),
-            Neumorphic(
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(40),
+                child: Neumorphic(
+                    padding: EdgeInsets.all(10),
+                    style: NeumorphicStyle(
+                      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(65)),
+                      color: Colors.white
+                    ),
+                    child: Container()
+                ),
+              )
+            ),
+            /*Neumorphic(
                 padding: EdgeInsets.all(10),
                 style: NeumorphicStyle(
                     boxShape: NeumorphicBoxShape.circle(),
-                    depth: 8,
-                    lightSource: LightSource.topLeft,
-                    color: Colors.white
                 ),
-                child: CircleAvatar(radius:200,backgroundImage: Image.network("https://avatars.githubusercontent.com/u/80033394?s=400&u=c7ab6ed6420f6a3bfd7a06b77823e6330a4de7f4&v=4").image,)
-            ),
+                child: CircleAvatar(radius:200,backgroundImage: Image.network("https://upload.wikimedia.org/wikipedia/commons/b/be/Acdc_backinblack_cover.jpg").image,)
+            ),*/
           ],
         ),
       ),
