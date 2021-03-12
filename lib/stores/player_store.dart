@@ -18,6 +18,12 @@ abstract class _PlayerStore with Store {
   bool isLoadingPlaylist = false;
 
   @observable
+  bool isSeeking = false;
+
+  @observable
+  double seekValue = 0;
+
+  @observable
   List<YoutubeVideo> playlist = [];
 
   @observable
@@ -42,21 +48,31 @@ abstract class _PlayerStore with Store {
   Duration position = Duration(seconds: 0);
 
   @action
-  void nextSong(){
-    if(playlistIndex<playlist.length-1){
-      playlistIndex+=1;
+  void setSeeking(bool value) {
+    isSeeking = value;
+  }
+
+  @action
+  void setSeekValue(double value) {
+    seekValue = value;
+  }
+
+  @action
+  void nextSong() {
+    if (playlistIndex < playlist.length - 1) {
+      playlistIndex += 1;
     }
   }
 
   @action
-  void selectSong(int value){
-    playlistIndex=value;
+  void selectSong(int value) {
+    playlistIndex = value;
   }
 
   @action
-  void previousSong(){
-    if(playlistIndex>0){
-      playlistIndex-=1;
+  void previousSong() {
+    if (playlistIndex > 0) {
+      playlistIndex -= 1;
     }
   }
 
@@ -70,7 +86,8 @@ abstract class _PlayerStore with Store {
   }
 
   Future<YoutubeVideo> getDetail(String id) async {
-    String embedUrl = "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=$id&format=json";
+    String embedUrl =
+        "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=$id&format=json";
     var res = await http.get(Uri.parse(embedUrl));
     try {
       if (res.statusCode == 200) {
@@ -95,10 +112,5 @@ abstract class _PlayerStore with Store {
     videoId = value.metaData.videoId;
     duration = value.metaData.duration;
     playerState = value.playerState;
-  }
-
-  @action
-  setPosition(Duration value) {
-    position = value;
   }
 }

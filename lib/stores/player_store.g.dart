@@ -24,6 +24,36 @@ mixin _$PlayerStore on _PlayerStore, Store {
     });
   }
 
+  final _$isSeekingAtom = Atom(name: '_PlayerStore.isSeeking');
+
+  @override
+  bool get isSeeking {
+    _$isSeekingAtom.reportRead();
+    return super.isSeeking;
+  }
+
+  @override
+  set isSeeking(bool value) {
+    _$isSeekingAtom.reportWrite(value, super.isSeeking, () {
+      super.isSeeking = value;
+    });
+  }
+
+  final _$seekValueAtom = Atom(name: '_PlayerStore.seekValue');
+
+  @override
+  double get seekValue {
+    _$seekValueAtom.reportRead();
+    return super.seekValue;
+  }
+
+  @override
+  set seekValue(double value) {
+    _$seekValueAtom.reportWrite(value, super.seekValue, () {
+      super.seekValue = value;
+    });
+  }
+
   final _$playlistAtom = Atom(name: '_PlayerStore.playlist');
 
   @override
@@ -154,6 +184,28 @@ mixin _$PlayerStore on _PlayerStore, Store {
   final _$_PlayerStoreActionController = ActionController(name: '_PlayerStore');
 
   @override
+  void setSeeking(bool value) {
+    final _$actionInfo = _$_PlayerStoreActionController.startAction(
+        name: '_PlayerStore.setSeeking');
+    try {
+      return super.setSeeking(value);
+    } finally {
+      _$_PlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSeekValue(double value) {
+    final _$actionInfo = _$_PlayerStoreActionController.startAction(
+        name: '_PlayerStore.setSeekValue');
+    try {
+      return super.setSeekValue(value);
+    } finally {
+      _$_PlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void nextSong() {
     final _$actionInfo = _$_PlayerStoreActionController.startAction(
         name: '_PlayerStore.nextSong');
@@ -198,20 +250,11 @@ mixin _$PlayerStore on _PlayerStore, Store {
   }
 
   @override
-  dynamic setPosition(Duration value) {
-    final _$actionInfo = _$_PlayerStoreActionController.startAction(
-        name: '_PlayerStore.setPosition');
-    try {
-      return super.setPosition(value);
-    } finally {
-      _$_PlayerStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 isLoadingPlaylist: ${isLoadingPlaylist},
+isSeeking: ${isSeeking},
+seekValue: ${seekValue},
 playlist: ${playlist},
 playlistIndex: ${playlistIndex},
 author: ${author},
