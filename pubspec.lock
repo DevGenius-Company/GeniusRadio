@@ -228,13 +228,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_visualizers:
-    dependency: "direct main"
-    description:
-      name: flutter_visualizers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   glob:
     dependency: transitive
     description:
@@ -459,6 +452,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.8"
+  responsive_builder:
+    dependency: "direct main"
+    description:
+      name: responsive_builder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   shelf:
     dependency: transitive
     description:
