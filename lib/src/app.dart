@@ -1,9 +1,13 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/app_config.dart';
 import 'package:genius_radio/resources/constants.dart';
+import 'package:genius_radio/src/cookie_manager.dart';
+import 'package:genius_radio/src/dialogs/credits_dialog.dart';
 import 'package:genius_radio/src/widgets/controls.dart';
 import 'package:genius_radio/src/widgets/playlist.dart';
 import 'package:genius_radio/src/widgets/responsive_text.dart';
@@ -12,6 +16,8 @@ import 'package:genius_radio/stores/player_store.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_plyr_iframe/youtube_plyr_iframe.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:clipboard/clipboard.dart';
 
 void mainCommon({@required String host}) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,11 +49,7 @@ class App extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: Stack(
-            children: [
-              MyHomePage(title: 'GeniusRadio'),
-            ],
-          ),
+          home: MyHomePage(title: 'GeniusRadio'),
         ),
       ),
     );
@@ -63,19 +65,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  YoutubePlayerController _controller;
   PlayerStore _store;
 
-  get http => null;
+  // ignore: close_sinks
+  YoutubePlayerController _controller;
+  FToast fToast;
+  bool showApp = true;
 
   @override
   void initState() {
     super.initState();
+    fToast = FToast();
+    fToast.init(context);
     _store = context.read();
     _store.loadPlaylist(Constants.playlist);
-
+    if (CookieManager.getCookie("index") != null) {
+      _store.selectSong(int.parse(CookieManager.getCookie("index")));
+    }
     _controller = YoutubePlayerController(
-      initialVideoId: Constants.playlist[0],
+      initialVideoId: CookieManager.getCookie("index") != null
+          ? Constants.playlist[int.parse(CookieManager.getCookie("index"))]
+          : Constants.playlist[0],
       params: YoutubePlayerParams(
           playlist: Constants.playlist,
           showControls: false,
@@ -83,7 +93,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           autoPlay: true,
           playsInline: true),
     );
-
     _controller.listen((value) {
       if (value.metaData.videoId !=
           _store.playlist[_store.playlistIndex].videoId) {
@@ -93,16 +102,48 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           _store.selectSong(index);
         }
       }
+      if (!(value.playerState == PlayerState.unStarted)) {
+        CookieManager.addToCookie("index", _store.playlistIndex.toString());
+      }
       _store.setValues(value);
+    });
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        showApp = false;
+      });
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void showCredits() {
+    showDialog(context: context, builder: (_) => CreditsDialog());
   }
 
-  Widget _buildDesktop(){
+  void showToast() {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Color.fromRGBO(26, 41, 75, 1),
+      ),
+      child: Text(
+        "🚀 Copied the url in your clipboard! Share it everywhere you want!",
+        style: GoogleFonts.montserrat(color: Colors.white),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 2),
+    );
+  }
+
+  void share() {
+    FlutterClipboard.copy(window.location.href).then((value) => showToast());
+  }
+
+  Widget _buildDesktop() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -118,16 +159,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   child: NeumorphicButton(
                       padding: EdgeInsets.all(4),
                       style: NeumorphicStyle(
-                          boxShape:
-                          NeumorphicBoxShape.circle()),
-                      child: Hero(
-                          tag: 'devGenius',
-                          child: CircleAvatar(
-                            backgroundImage: Image.network(
-                                "https://avatars.githubusercontent.com/u/80033394?s=400&u=c7ab6ed6420f6a3bfd7a06b77823e6330a4de7f4&v=4")
-                                .image,
-                          )),
-                      onPressed: () {}),
+                          boxShape: NeumorphicBoxShape.circle()),
+                      child: CircleAvatar(
+                        backgroundImage:
+                            AssetImage("assets/avatars/devgenius.png"),
+                      ),
+                      onPressed: () => showCredits()),
                 ),
               ),
               Spacer(),
@@ -138,69 +175,82 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   fit: BoxFit.cover,
                   child: NeumorphicButton(
                       style: NeumorphicStyle(
-                          boxShape:
-                          NeumorphicBoxShape.circle()),
+                          boxShape: NeumorphicBoxShape.circle()),
                       child: Icon(
                         Icons.share_outlined,
                         color: Color.fromRGBO(26, 41, 75, 1),
                       ),
-                      onPressed: () {}),
+                      onPressed: () => share()),
                 ),
               ),
             ],
           ),
         ),
         Expanded(
+          flex: 6,
           child: Padding(
-            padding: EdgeInsets.all(120),
-            child: Neumorphic(
-              style: NeumorphicStyle(
-                  boxShape: NeumorphicBoxShape.roundRect(
-                      BorderRadius.circular(65)),
-                  color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 30,bottom: 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 4,
-                      child: Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.center,
+            padding: EdgeInsets.all(25),
+            child: Row(
+              children: [
+                Spacer(),
+                Expanded(
+                  flex: 7,
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(65)),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30, bottom: 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SongInfo(),
-                          SizedBox(
-                            height: 20,
+                          Expanded(
+                            flex: 4,
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 25),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SongInfo(),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                        constraints:
+                                            BoxConstraints(maxWidth: 400),
+                                        child: Controls()),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          Container(
-                              constraints: BoxConstraints(
-                                  maxWidth: 400),
-                              child: Controls()),
+                          SizedBox(width: 30),
+                          Expanded(
+                            flex: 6,
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 50, 50, 50),
+                                child: Playlist()),
+                          ),
                         ],
                       ),
                     ),
-                    SizedBox(width: 30),
-                    Expanded(
-                      flex: 6,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              0, 50, 50, 50),
-                          child: Playlist()),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                Spacer(),
+              ],
             ),
           ),
         ),
+        Spacer()
       ],
     );
   }
 
-  Widget _buildMobile(){
+  Widget _buildMobile() {
     return Padding(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -216,16 +266,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   child: NeumorphicButton(
                       padding: EdgeInsets.all(4),
                       style: NeumorphicStyle(
-                          boxShape:
-                          NeumorphicBoxShape.circle()),
-                      child: Hero(
-                          tag: 'devGenius',
-                          child: CircleAvatar(
-                            backgroundImage: Image.network(
-                                "https://avatars.githubusercontent.com/u/80033394?s=400&u=c7ab6ed6420f6a3bfd7a06b77823e6330a4de7f4&v=4")
-                                .image,
-                          )),
-                      onPressed: () {}),
+                          boxShape: NeumorphicBoxShape.circle()),
+                      child: CircleAvatar(
+                        backgroundImage:
+                            AssetImage("assets/avatars/devgenius.png"),
+                      ),
+                      onPressed: () => showCredits()),
                 ),
               ),
               Spacer(),
@@ -251,33 +297,29 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   fit: BoxFit.cover,
                   child: NeumorphicButton(
                       style: NeumorphicStyle(
-                          boxShape:
-                          NeumorphicBoxShape.circle()),
+                          boxShape: NeumorphicBoxShape.circle()),
                       child: Icon(
                         Icons.share_outlined,
                         color: Color.fromRGBO(26, 41, 75, 1),
                       ),
-                      onPressed: () {}),
+                      onPressed: () => share()),
                 ),
               ),
             ],
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment:
-              MainAxisAlignment.center,
-              children: [
-                SongInfo(),
-                SizedBox(
-                  height: 35,
-                ),
-                Container(
-                    constraints: BoxConstraints(
-                        maxWidth: 400),
-                    child: Controls()),
-              ],
-            )
-          ),
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SongInfo(),
+              SizedBox(
+                height: 35,
+              ),
+              Container(
+                  constraints: BoxConstraints(maxWidth: 400),
+                  child: Controls()),
+            ],
+          )),
         ],
       ),
     );
@@ -285,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final player = YoutubePlayerIFrame(
+    final _player = YoutubePlayerIFrame(
       key: GlobalKey(),
     );
     return NeumorphicTheme(
@@ -297,23 +339,25 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         depth: 10,
         intensity: 2,
       ),
-      child: YoutubePlayerControllerProvider(
-        controller: _controller,
-        child: Observer(
-          builder: (_) => !_store.isLoadingPlaylist
-              ? Scaffold(
-                  backgroundColor: Color.fromRGBO(248, 247, 247, 1),
-                  body: Stack(
-                    children: [
-                      //Invisible Player
-                      SizedBox(height: 0, width: 0, child: player),
-                      LayoutBuilder(
-                          builder: (context, constraints) => (constraints.maxHeight/constraints.maxWidth)<1?_buildDesktop():_buildMobile()),
-                    ],
-                  ),
-                )
-              : Center(child: CircularProgressIndicator()),
-        ),
+      child: Observer(
+        builder: (_) => !_store.isLoadingPlaylist && !showApp
+            ? YoutubePlayerControllerProvider(
+                controller: _controller,
+                child: Stack(
+                  children: [
+                    SizedBox(height: 0, width: 0, child: _player),
+                    Scaffold(
+                      backgroundColor: Color.fromRGBO(248, 247, 247, 1),
+                      body: LayoutBuilder(
+                          builder: (context, constraints) =>
+                              (constraints.maxHeight / constraints.maxWidth) < 1
+                                  ? _buildDesktop()
+                                  : _buildMobile()),
+                    ),
+                  ],
+                ),
+              )
+            : Center(child: Image.asset("assets/animation.gif")),
       ),
     );
   }

@@ -38,7 +38,8 @@ class _SongInfoState extends State<SongInfo> {
                   child: context.ytController.value.isReady &&
                           _store.playerState != PlayerState.buffering
                       ? CircleAvatar(
-                          maxRadius: 200,
+                          maxRadius: 150,
+                          minRadius: 100,
                           backgroundColor: Colors.transparent,
                           backgroundImage: NetworkImage(
                               YoutubePlayerController.getThumbnail(
@@ -48,12 +49,12 @@ class _SongInfoState extends State<SongInfo> {
                                   webp: false)),
                         )
                       : CircleAvatar(
-                          maxRadius: 200,
+                          maxRadius: 150,
+                          minRadius: 100,
                           backgroundColor: Colors.transparent,
-                          child: CircularProgressIndicator(
-                              backgroundColor: Colors.transparent,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color.fromRGBO(26, 41, 75, 1))),
+                          backgroundImage: AssetImage(
+                            "assets/animation.gif"
+                          ),
                         ),
                 ),
                 SizedBox(height: 10),

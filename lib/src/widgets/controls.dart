@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:genius_radio/resources/custom_thumb_shape.dart';
 import 'package:genius_radio/stores/player_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -36,11 +37,11 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     context.ytController.listen((value) {
       if (value.playerState == PlayerState.playing) {
-        if(_isPlaying!=true){
+        if (_isPlaying != true) {
           _isPlaying = true;
         }
       } else {
-        if(_isPlaying!=false){
+        if (_isPlaying != false) {
           _isPlaying = false;
         }
       }
@@ -50,29 +51,40 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
               children: [
                 Container(
                   constraints: BoxConstraints(maxWidth: 400),
-                  child: NeumorphicSlider(
-                    style: SliderStyle(
-                        depth: 2,
-                        thumbBorder: NeumorphicBorder(
-                            isEnabled: true, color: Colors.white, width: 6),
-                        accent: Color.fromRGBO(26, 41, 75, 1),
-                        variant: Color.fromRGBO(26, 41, 75, 1)),
-                    value: _store.isSeeking
-                        ? _store.seekValue
-                        : _store.position.inSeconds.toDouble(),
-                    max: _store.duration.inSeconds.toDouble(),
-                    onChangeEnd: (value) {
-                      _store.setSeeking(false);
-                      context.ytController
-                          .seekTo(Duration(seconds: value.toInt()));
-                    },
-                    onChangeStart: (value) {
-                      _store.setSeeking(true);
-                      _store.setSeekValue(value);
-                    },
-                    onChanged: (value) {
-                      _store.setSeekValue(value);
-                    },
+                  child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Color.fromRGBO(26, 41, 75, 1),
+                      inactiveTrackColor: Colors.grey[200],
+                      trackHeight: 10,
+                      trackShape: RoundedRectSliderTrackShape(),
+                      thumbColor: Color.fromRGBO(26, 41, 75, 1),
+                      thumbShape: CustomThumbShape(thumbRadius: 10),
+                      overlayColor:
+                          Color.fromRGBO(26, 41, 75, 1).withOpacity(0.3),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 28.0),
+                    ),
+                    child: Slider(
+                        value: _store.isSeeking
+                            ? _store.seekValue
+                            : _store.position != null
+                                ? _store.position.inSeconds.toDouble()
+                                : 0,
+                        max: _store.duration != null
+                            ? _store.duration.inSeconds.toDouble()
+                            : 100,
+                        onChangeEnd: (value) {
+                          _store.setSeeking(false);
+                          context.ytController
+                              .seekTo(Duration(seconds: value.toInt()));
+                        },
+                        onChangeStart: (value) {
+                          _store.setSeeking(true);
+                          _store.setSeekValue(value);
+                        },
+                        onChanged: (value) {
+                          _store.setSeekValue(value);
+                        }),
                   ),
                 ),
                 Text(
