@@ -1,4 +1,4 @@
-import 'package:genius_radio/models/YoutubeVideo.dart';
+import 'package:genius_radio/src/models/YoutubeVideo.dart';
 import 'package:mobx/mobx.dart';
 
 // ignore: implementation_imports
