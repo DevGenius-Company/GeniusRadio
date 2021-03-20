@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:genius_radio/resources/assets.dart';
 import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/src/widgets/responsive_avatar.dart';
 import 'package:genius_radio/src/widgets/responsive_text.dart';
@@ -53,7 +54,7 @@ class _CreditsDialogState extends State<CreditsDialog> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Spacer(),
-                            ResponsiveAvatar("assets/avatars/emanuel.jpg"),
+                            ResponsiveAvatar(CustomAssets.emanuel),
                             Spacer(),
                             Expanded(
                               flex: 8,
@@ -86,9 +87,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: emanuelDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15, color: CustomColors.darkBlue),
+                                        fontSize: 15,
+                                        color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18, color: CustomColors.darkBlue),
+                                        fontSize: 18,
+                                        color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),
@@ -101,7 +104,7 @@ class _CreditsDialogState extends State<CreditsDialog> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Spacer(),
-                            ResponsiveAvatar("assets/avatars/giorgio.jpg"),
+                            ResponsiveAvatar(CustomAssets.giorgio),
                             Spacer(),
                             Expanded(
                               flex: 8,
@@ -134,9 +137,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: giorgioDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15, color: CustomColors.darkBlue),
+                                        fontSize: 15,
+                                        color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18, color: CustomColors.darkBlue),
+                                        fontSize: 18,
+                                        color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),
@@ -149,7 +154,7 @@ class _CreditsDialogState extends State<CreditsDialog> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Spacer(),
-                            ResponsiveAvatar("assets/avatars/francesco.jpg"),
+                            ResponsiveAvatar(CustomAssets.francesco),
                             Spacer(),
                             Expanded(
                               flex: 8,
@@ -182,9 +187,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: francescoDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15, color: CustomColors.darkBlue),
+                                        fontSize: 15,
+                                        color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18, color: CustomColors.darkBlue),
+                                        fontSize: 18,
+                                        color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),

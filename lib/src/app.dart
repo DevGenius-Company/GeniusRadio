@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/app_config.dart';
+import 'package:genius_radio/resources/assets.dart';
 import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/resources/constants.dart';
 import 'package:genius_radio/src/cookie_manager.dart';
@@ -162,8 +163,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       style: NeumorphicStyle(
                           boxShape: NeumorphicBoxShape.circle()),
                       child: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/avatars/devgenius.png"),
+                        backgroundImage: AssetImage(CustomAssets.devgenius),
                       ),
                       onPressed: () => showCredits()),
                 ),
@@ -269,8 +269,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       style: NeumorphicStyle(
                           boxShape: NeumorphicBoxShape.circle()),
                       child: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/avatars/devgenius.png"),
+                        backgroundImage: AssetImage(CustomAssets.devgenius),
                       ),
                       onPressed: () => showCredits()),
                 ),
