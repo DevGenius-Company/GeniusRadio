@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/src/widgets/responsive_text.dart';
 import 'package:genius_radio/src/stores/player_store.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,9 +53,7 @@ class _SongInfoState extends State<SongInfo> {
                           maxRadius: 150,
                           minRadius: 100,
                           backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage(
-                            "assets/animation.gif"
-                          ),
+                          backgroundImage: AssetImage("assets/animation.gif"),
                         ),
                 ),
                 SizedBox(height: 10),
@@ -66,12 +65,12 @@ class _SongInfoState extends State<SongInfo> {
                         mediumStyle: GoogleFonts.montserrat(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(26, 41, 75, 1),
+                          color: CustomColors.darkBlue,
                         ),
                         bigStyle: GoogleFonts.montserrat(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(26, 41, 75, 1),
+                          color: CustomColors.darkBlue,
                         ),
                         align: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
@@ -87,12 +86,12 @@ class _SongInfoState extends State<SongInfo> {
                         mediumStyle: GoogleFonts.montserrat(
                           fontSize: 15,
                           fontWeight: FontWeight.w300,
-                          color: Color.fromRGBO(26, 41, 75, 1),
+                          color: CustomColors.darkBlue,
                         ),
                         bigStyle: GoogleFonts.montserrat(
                           fontSize: 18,
                           fontWeight: FontWeight.w300,
-                          color: Color.fromRGBO(26, 41, 75, 1),
+                          color: CustomColors.darkBlue,
                         ),
                         overflow: TextOverflow.ellipsis,
                         align: TextAlign.center,

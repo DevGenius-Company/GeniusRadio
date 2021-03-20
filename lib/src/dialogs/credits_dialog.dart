@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/src/widgets/responsive_avatar.dart';
 import 'package:genius_radio/src/widgets/responsive_text.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,9 +13,12 @@ class CreditsDialog extends StatefulWidget {
 }
 
 class _CreditsDialogState extends State<CreditsDialog> {
-  String emanuelDescription="Amo i Computer e Programmare. Ho realizzato il mio sogno co-fondando DevGenius.it e creando un fantastico team che ci permette di aiutare quotidianamente i nostri clienti!";
-  String giorgioDescription="Public speaker in italian tech community. Recently I've done some talks about git, docker, communities and frontend ecosystem. Author and maintainer of open source project VsCode Jira Plugin.";
-  String francescoDescription="22 yrs old man graduated in I.T.I.S L. DI Maggio and certificated in Cisco CCNA. Passion for programming in every language.";
+  String emanuelDescription =
+      "Amo i Computer e Programmare. Ho realizzato il mio sogno co-fondando DevGenius.it e creando un fantastico team che ci permette di aiutare quotidianamente i nostri clienti!";
+  String giorgioDescription =
+      "Public speaker in italian tech community. Recently I've done some talks about git, docker, communities and frontend ecosystem. Author and maintainer of open source project VsCode Jira Plugin.";
+  String francescoDescription =
+      "22 yrs old man graduated in I.T.I.S L. DI Maggio and certificated in Cisco CCNA. Passion for programming in every language.";
   void _launchURL(String url) async =>
       await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 
@@ -35,11 +39,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                       mediumStyle: GoogleFonts.montserrat(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(26, 41, 75, 1)),
+                          color: CustomColors.darkBlue),
                       bigStyle: GoogleFonts.montserrat(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(26, 41, 75, 1)),
+                          color: CustomColors.darkBlue),
                     ),
                     SizedBox(height: 40),
                     Column(
@@ -64,13 +68,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                         mediumStyle: GoogleFonts.montserrat(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                         bigStyle: GoogleFonts.montserrat(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                       ),
                                       IconButton(
                                         icon: Icon(FontAwesomeIcons.linkedin),
@@ -84,13 +86,9 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: emanuelDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 15, color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 18, color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),
@@ -118,13 +116,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                         mediumStyle: GoogleFonts.montserrat(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                         bigStyle: GoogleFonts.montserrat(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                       ),
                                       IconButton(
                                         icon: Icon(FontAwesomeIcons.linkedin),
@@ -138,13 +134,9 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: giorgioDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 15, color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 18, color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),
@@ -172,13 +164,11 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                         mediumStyle: GoogleFonts.montserrat(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                         bigStyle: GoogleFonts.montserrat(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(26, 41, 75, 1)),
+                                            color: CustomColors.darkBlue),
                                       ),
                                       IconButton(
                                         icon: Icon(FontAwesomeIcons.linkedin),
@@ -192,13 +182,9 @@ class _CreditsDialogState extends State<CreditsDialog> {
                                     text: francescoDescription,
                                     smallStyle: TextStyle(fontSize: 0),
                                     mediumStyle: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 15, color: CustomColors.darkBlue),
                                     bigStyle: GoogleFonts.montserrat(
-                                        fontSize: 18,
-                                        color:
-                                        Color.fromRGBO(26, 41, 75, 1)),
+                                        fontSize: 18, color: CustomColors.darkBlue),
                                   ),
                                 ],
                               ),
@@ -212,9 +198,9 @@ class _CreditsDialogState extends State<CreditsDialog> {
                     ResponsiveText(
                       text: "Sponsored by DevGenius and ItalianCoders",
                       mediumStyle: GoogleFonts.montserrat(
-                          fontSize: 10, color: Color.fromRGBO(26, 41, 75, 1)),
+                          fontSize: 10, color: CustomColors.darkBlue),
                       bigStyle: GoogleFonts.montserrat(
-                          fontSize: 15, color: Color.fromRGBO(26, 41, 75, 1)),
+                          fontSize: 15, color: CustomColors.darkBlue),
                     ),
                   ],
                 ),

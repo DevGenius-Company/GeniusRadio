@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/resources/custom_thumb_shape.dart';
 import 'package:genius_radio/src/stores/player_store.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,14 +54,13 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
                   constraints: BoxConstraints(maxWidth: 400),
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Color.fromRGBO(26, 41, 75, 1),
+                      activeTrackColor: CustomColors.darkBlue,
                       inactiveTrackColor: Colors.grey[200],
                       trackHeight: 10,
                       trackShape: RoundedRectSliderTrackShape(),
-                      thumbColor: Color.fromRGBO(26, 41, 75, 1),
+                      thumbColor: CustomColors.darkBlue,
                       thumbShape: CustomThumbShape(thumbRadius: 10),
-                      overlayColor:
-                          Color.fromRGBO(26, 41, 75, 1).withOpacity(0.3),
+                      overlayColor: CustomColors.darkBlue.withOpacity(0.3),
                       overlayShape:
                           RoundSliderOverlayShape(overlayRadius: 28.0),
                     ),
@@ -112,7 +112,7 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
                                 boxShape: NeumorphicBoxShape.circle()),
                             child: Icon(
                               Icons.skip_previous_rounded,
-                              color: Color.fromRGBO(26, 41, 75, 1),
+                              color: CustomColors.darkBlue,
                             ),
                             onPressed: () {
                               context.ytController.previousVideo();
@@ -127,7 +127,7 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
                         fit: BoxFit.cover,
                         child: NeumorphicButton(
                             style: NeumorphicStyle(
-                                color: Color.fromRGBO(26, 41, 75, 1),
+                                color: CustomColors.darkBlue,
                                 boxShape: NeumorphicBoxShape.circle()),
                             child: AnimatedSwitcher(
                               duration: Duration(milliseconds: 250),
@@ -161,7 +161,7 @@ class _ControlsState extends State<Controls> with TickerProviderStateMixin {
                                 boxShape: NeumorphicBoxShape.circle()),
                             child: Icon(
                               Icons.skip_next_rounded,
-                              color: Color.fromRGBO(26, 41, 75, 1),
+                              color: CustomColors.darkBlue,
                             ),
                             onPressed: () {
                               context.ytController.nextVideo();

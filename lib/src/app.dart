@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/app_config.dart';
+import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/resources/constants.dart';
 import 'package:genius_radio/src/cookie_manager.dart';
 import 'package:genius_radio/src/dialogs/credits_dialog.dart';
@@ -123,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Color.fromRGBO(26, 41, 75, 1),
+        color: CustomColors.darkBlue,
       ),
       child: Text(
         "🚀 Copied the url in your clipboard! Share it everywhere you want!",
@@ -178,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           boxShape: NeumorphicBoxShape.circle()),
                       child: Icon(
                         Icons.share_outlined,
-                        color: Color.fromRGBO(26, 41, 75, 1),
+                        color: CustomColors.darkBlue,
                       ),
                       onPressed: () => share()),
                 ),
@@ -280,12 +281,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 mediumStyle: GoogleFonts.montserrat(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(26, 41, 75, 1),
+                  color: CustomColors.darkBlue,
                 ),
                 bigStyle: GoogleFonts.montserrat(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(26, 41, 75, 1),
+                  color: CustomColors.darkBlue,
                 ),
                 align: TextAlign.center,
               ),
@@ -300,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           boxShape: NeumorphicBoxShape.circle()),
                       child: Icon(
                         Icons.share_outlined,
-                        color: Color.fromRGBO(26, 41, 75, 1),
+                        color: CustomColors.darkBlue,
                       ),
                       onPressed: () => share()),
                 ),
