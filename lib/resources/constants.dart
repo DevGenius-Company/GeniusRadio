@@ -9,4 +9,11 @@ class Constants {
     "YqeW9_5kURI",
     "vOL40lrhE6U"
   ];
+
+  static String linkedinEmanuelUrl =
+      "https://www.linkedin.com/in/emanuel-tesoriello-developer/";
+  static String linkedinFrancescoUrl =
+      "https://www.linkedin.com/in/francesco-la-forgia-808a6b151/";
+  static String linkedinGiorgioUrl =
+      "https://www.linkedin.com/in/giorgio-boa-3ba717139/";
 }

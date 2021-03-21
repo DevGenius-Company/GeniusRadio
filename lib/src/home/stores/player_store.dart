@@ -1,4 +1,4 @@
-import 'package:genius_radio/src/models/YoutubeVideo.dart';
+import 'package:genius_radio/src/home/models/youtube_video.dart';
 import 'package:mobx/mobx.dart';
 
 // ignore: implementation_imports
@@ -16,34 +16,24 @@ abstract class _PlayerStore with Store {
 
   @observable
   bool isLoadingPlaylist = false;
-
   @observable
   bool isSeeking = false;
-
   @observable
   double seekValue = 0;
-
   @observable
   List<YoutubeVideo> playlist = [];
-
   @observable
   int playlistIndex = 0;
-
   @observable
   String author = "";
-
   @observable
   String title = "";
-
   @observable
   String videoId = "";
-
   @observable
   PlayerState playerState;
-
   @observable
   Duration duration = Duration(seconds: 100);
-
   @observable
   Duration position = Duration(seconds: 0);
 

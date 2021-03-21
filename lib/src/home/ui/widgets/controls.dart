@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/resources/custom_thumb_shape.dart';
-import 'package:genius_radio/src/stores/player_store.dart';
+import 'package:genius_radio/src/home/stores/player_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_plyr_iframe/youtube_plyr_iframe.dart';

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/colors.dart';
-import 'package:genius_radio/src/widgets/responsive_text.dart';
-import 'package:genius_radio/src/stores/player_store.dart';
+import 'package:genius_radio/resources/texts.dart';
+import 'package:genius_radio/src/home/stores/player_store.dart';
+import 'package:genius_radio/src/home/ui/widgets/responsive_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_plyr_iframe/youtube_plyr_iframe.dart';
@@ -30,7 +31,7 @@ class _PlaylistState extends State<Playlist> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ResponsiveText(
-                  text: "🚀 Genius Radio",
+                  text: CustomTexts.geniusRadio,
                   mediumStyle: GoogleFonts.montserrat(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
