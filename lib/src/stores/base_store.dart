@@ -9,11 +9,11 @@ class BaseStore = _BaseStore with _$BaseStore;
 // The store-class
 abstract class _BaseStore with Store {
   @observable
-  bool dark = false;
+  bool blue = true;
 
   @action
-  void toggleTheme() {
-    dark = !dark;
+  void toggleBlue() {
+    blue = !blue;
   }
 }
 
