@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/app_config.dart';
-import 'package:genius_radio/src/home/stores/player_store.dart';
-import 'package:genius_radio/src/home/ui/views/home_page.dart';
 import 'package:provider/provider.dart';
 
-void mainCommon({@required String host}) {
+void mainCommon({@required String host, @required String env}) {
   WidgetsFlutterBinding.ensureInitialized();
-  var configuredApp = App(host);
+  var configuredApp = App(host, env);
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(configuredApp),
@@ -17,26 +15,24 @@ void mainCommon({@required String host}) {
 
 class App extends StatelessWidget {
   final String host;
+  final String env;
 
-  App(this.host);
+  App(this.host, this.env);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<PlayerStore>(
-          create: (_) => PlayerStore(),
-        )
-      ],
-      child: AppConfig(
-        host,
-        child: MaterialApp(
-          title: 'GeniusRadio',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: MyHomePage(title: 'GeniusRadio'),
+    return MaterialApp(
+      title: 'GeniusRadio',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Codemotions'),
+        ),
+        body: Center(
+          child: Text('Hello from: ' + this.env),
         ),
       ),
     );
