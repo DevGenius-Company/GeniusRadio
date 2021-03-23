@@ -1,20 +1,30 @@
-# genius_radio
+# Genius Radio
 
-Genius Radio
+| [<img src="https://raw.githubusercontent.com/DevGenius-Company/GeniusRadio/main/assets/avatars/emanuel.jpg" width="160px;" /><br /><sub><b>Emanuel Tesoriello</b></sub>](https://www.linkedin.com/in/emanuel-tesoriello-developer)<br /> | [<img src="https://raw.githubusercontent.com/DevGenius-Company/GeniusRadio/main/assets/avatars/giorgio.jpg" width="160px;" /><br /><sub><b>Giorgio Boa</b></sub>](https://www.linkedin.com/in/giorgio-boa-3ba717139)<br /> | [<img src="https://raw.githubusercontent.com/DevGenius-Company/GeniusRadio/main/assets/avatars/francesco.jpg" width="160px;" /><br /><sub><b>Francesco La Forgia</b></sub>](https://www.linkedin.com/in/francesco-la-forgia-808a6b151)<br /> |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 
-## Build method
+<br><br>
 
-- flutter build web --web-renderer html -t *main file*
+# Build
 
-## Getting Started
+- flutter build web --web-renderer html -t _main file_
 
-This project is a starting point for a Flutter application.
+## branch: 01_base
 
-A few resources to get you started if this is your first Flutter project:
+- Base di partenza, capiamo assieme come passare le variabili d'ambiente all'interno della nostra applicazione.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## branch: 02_mobx
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.we
+- Utilizzo di [mobx](https://pub.dev/packages/mobx) per la gestione dello stato applicativo.
+
+## branch: 02_mobx_sbagliato
+
+- Errore tipico nell'uso di mobx. **Da evitare assolutamente** per non impattare su performance e leggibilità.
+
+## branch: 03_mobx_provider
+
+- Usiamo la combo [mobx](https://pub.dev/packages/mobx) più [provider](https://pub.dev/packages/provider) per organizzare al meglio la nostra applicazione.
+
+## branch: main
+
+- Applicazione completa.
