@@ -4,6 +4,8 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:genius_radio/resources/app_config.dart';
 import 'package:provider/provider.dart';
 
+//final counter = Counter();
+
 void mainCommon({@required String host, @required String env}) {
   WidgetsFlutterBinding.ensureInitialized();
   var configuredApp = App(host, env);
