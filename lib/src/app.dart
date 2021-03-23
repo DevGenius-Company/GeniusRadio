@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:genius_radio/src/stores/base_store.dart';
 
-//final counter = Counter();
+final baseStore = BaseStore();
 
 void mainCommon({@required String host, @required String env}) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,18 +24,25 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GeniusRadio',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Codemotions'),
-          centerTitle: true,
+    return Observer(
+      builder: (_) => MaterialApp(
+        title: 'GeniusRadio',
+        theme: ThemeData(
+          primarySwatch: baseStore.blue ? Colors.blue : Colors.red,
         ),
-        body: Center(
-          child: Text('Hello from: ' + this.env),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Welcome to Codemotions'),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: Text('Hello from: ${this.env}'),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: baseStore.toggleBlue,
+            tooltip: 'Change color',
+            child: Icon(Icons.refresh),
+          ),
         ),
       ),
     );
