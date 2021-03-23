@@ -30,6 +30,7 @@ class App extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Welcome to Codemotions'),
+          centerTitle: true,
         ),
         body: Center(
           child: Text('Hello from: ' + this.env),
