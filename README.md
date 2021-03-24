@@ -16,6 +16,11 @@ The amazing Genius Radio -> https://geniusradiotesthosting.web.app/ <br>
 - DEV -> _flutter run -d chrome -t lib/dev/main.dart_
 - PROD -> _flutter run -d chrome -t lib/prod/main.dart_
 
+# Build
+
+- DEV -> _flutter build web --web-renderer html -t lib/dev/main.dart_
+- PROD -> _flutter build web --web-renderer html -t lib/prod/main.dart_
+
 ## branch: 01_base
 
 - Base di partenza, capiamo assieme come passare le variabili d'ambiente all'interno della nostra applicazione.
