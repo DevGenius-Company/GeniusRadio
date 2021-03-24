@@ -5,6 +5,10 @@
 
 <br><br>
 
+# Install dependencies
+
+- flutter pub get
+
 # Build
 
 - flutter build web --web-renderer html -t _main file_
