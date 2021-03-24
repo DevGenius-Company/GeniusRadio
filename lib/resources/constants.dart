@@ -6,8 +6,7 @@ class Constants {
     "Kp7eSUU9oy8",
     "nxR278IXMkQ",
     "htFlrDGNtqc",
-    "gCYcHz2k5x0",
-    "vOL40lrhE6U"
+    "vOL40lrhE6U",
   ];
 
   static String linkedinEmanuelUrl =
