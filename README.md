@@ -11,9 +11,10 @@ The amazing Genius Radio -> https://geniusradiotesthosting.web.app/ <br>
 
 - flutter pub get
 
-# Build
+# Run
 
-- flutter build web --web-renderer html -t _main file_
+- DEV -> _flutter run -d chrome -t lib/dev/main.dart_
+- PROD -> _flutter run -d chrome -t lib/prod/main.dart_
 
 ## branch: 01_base
 
