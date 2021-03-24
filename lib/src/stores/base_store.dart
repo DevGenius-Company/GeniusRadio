@@ -17,5 +17,5 @@ abstract class _BaseStore with Store {
   }
 }
 
-// flutter packages pub run build_runner build <- generate <name>.g.dart
-// flutter packages pub run build_runner watch <- keep watching
+// flutter pub run build_runner build --delete-conflicting-outputs <- generate <name>.g.dart
+// flutter pub run build_runner watch --delete-conflicting-outputs <- keep watching
