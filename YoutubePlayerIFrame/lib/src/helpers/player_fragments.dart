@@ -33,6 +33,7 @@ String youtubeIFrameTag(YoutubePlayerController controller) {
     'embed/${controller.initialVideoId}',
     params,
   );
+  // OUR FIX -> autoplay
   return '<iframe id="player" type="text/html" allow="autoplay"'
       ' style="position:absolute; top:0px; left:0px; bottom:0px; right:10px;'
       ' width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"'
