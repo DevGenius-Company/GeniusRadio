@@ -30,7 +30,8 @@ class HomePageMobile extends StatelessWidget {
                   child: NeumorphicButton(
                       padding: EdgeInsets.all(4),
                       style: NeumorphicStyle(
-                          boxShape: NeumorphicBoxShape.circle()),
+                          boxShape: NeumorphicBoxShape.circle(),
+                          color: Color.fromRGBO(248, 247, 247, 1)),
                       child: CircleAvatar(
                         backgroundImage: AssetImage(CustomAssets.devgenius),
                       ),
@@ -60,7 +61,8 @@ class HomePageMobile extends StatelessWidget {
                   fit: BoxFit.cover,
                   child: NeumorphicButton(
                       style: NeumorphicStyle(
-                          boxShape: NeumorphicBoxShape.circle()),
+                          boxShape: NeumorphicBoxShape.circle(),
+                          color: Color.fromRGBO(248, 247, 247, 1)),
                       child: Icon(
                         Icons.share_outlined,
                         color: CustomColors.darkBlue,

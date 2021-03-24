@@ -1,5 +1,5 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
+//import 'dart:html';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:genius_radio/resources/assets.dart';
 import 'package:genius_radio/resources/colors.dart';
 import 'package:genius_radio/resources/constants.dart';
 import 'package:genius_radio/resources/texts.dart';
-import 'package:genius_radio/src/base/utilities/cookie_manager.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:genius_radio/src/home/stores/player_store.dart';
 import 'package:genius_radio/src/home/ui/views/credits_dialog.dart';
 import 'package:genius_radio/src/home/ui/views/home_page_desktop.dart';
@@ -42,13 +42,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     fToast.init(context);
     _store = context.read();
     _store.loadPlaylist(Constants.playlist);
-    if (CookieManager.getCookie("index") != null) {
-      _store.selectSong(int.parse(CookieManager.getCookie("index")));
-    }
     _controller = YoutubePlayerController(
-      initialVideoId: CookieManager.getCookie("index") != null
+      initialVideoId:
+          /*CookieManager.getCookie("index") != null
           ? Constants.playlist[int.parse(CookieManager.getCookie("index"))]
-          : Constants.playlist[0],
+          : */
+          Constants.playlist[0],
       params: YoutubePlayerParams(
           playlist: Constants.playlist,
           showControls: false,
@@ -64,9 +63,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         if (index > -1) {
           _store.selectSong(index);
         }
-      }
-      if (!(value.playerState == PlayerState.unStarted)) {
-        CookieManager.addToCookie("index", _store.playlistIndex.toString());
       }
       _store.setValues(value);
     });
@@ -103,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   void share() {
-    FlutterClipboard.copy(window.location.href).then((value) => showToast());
+    FlutterClipboard.copy("geniusradio.web.app").then((value) => showToast());
   }
 
   @override
@@ -126,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 controller: _controller,
                 child: Stack(
                   children: [
-                    SizedBox(height: 0, width: 0, child: _player),
+                    SizedBox(height: kIsWeb?0:200, width: kIsWeb?0:200, child: _player),
                     Scaffold(
                       backgroundColor: Color.fromRGBO(248, 247, 247, 1),
                       body: LayoutBuilder(
@@ -138,7 +134,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   ],
                 ),
               )
-            : Center(child: Image.asset(CustomAssets.loadingAnimations)),
+            : Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.white,
+                child:
+                    Center(child: Image.asset(CustomAssets.loadingAnimations))),
       ),
     );
   }

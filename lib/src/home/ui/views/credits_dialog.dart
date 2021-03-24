@@ -52,6 +52,7 @@ class _CreditsDialogState extends State<CreditsDialog> {
                             CustomTexts.giorgioBoa,
                             Constants.linkedinGiorgioUrl,
                             CustomTexts.giorgioDescription),
+                        SizedBox(height: 25),
                         DialogUserCreditRow(
                             CustomAssets.francesco,
                             CustomTexts.francescoLaForgia,

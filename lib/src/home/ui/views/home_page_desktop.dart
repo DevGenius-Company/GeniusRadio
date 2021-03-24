@@ -21,101 +21,105 @@ class HomePageDesktop extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Row(
             children: [
-              Container(
-                height: 80,
-                width: 80,
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: NeumorphicButton(
-                      padding: EdgeInsets.all(4),
-                      style: NeumorphicStyle(
-                          boxShape: NeumorphicBoxShape.circle()),
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(CustomAssets.devgenius),
-                      ),
-                      onPressed: onShowCreditClick),
-                ),
-              ),
-              Spacer(),
-              Container(
-                height: 80,
-                width: 80,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: NeumorphicButton(
-                      style: NeumorphicStyle(
-                          boxShape: NeumorphicBoxShape.circle()),
-                      child: Icon(
-                        Icons.share_outlined,
-                        color: CustomColors.darkBlue,
-                      ),
-                      onPressed: onShareClick),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 6,
-          child: Padding(
-            padding: EdgeInsets.all(25),
-            child: Row(
-              children: [
-                Spacer(),
-                Expanded(
-                  flex: 7,
-                  child: Neumorphic(
-                    style: NeumorphicStyle(
-                        boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(65)),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 30, bottom: 20),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 4,
-                            child: SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 25),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SongInfo(),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                        constraints:
-                                            BoxConstraints(maxWidth: 400),
-                                        child: Controls()),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 30),
-                          Expanded(
-                            flex: 6,
-                            child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0, 50, 50, 50),
-                                child: Playlist()),
-                          ),
-                        ],
-                      ),
-                    ),
+            Container(
+            height: 80,
+            width: 80,
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: NeumorphicButton(
+                  padding: EdgeInsets.all(4),
+                  style: NeumorphicStyle(
+                      boxShape: NeumorphicBoxShape.circle(),
+                      color: Color.fromRGBO(248, 247, 247, 1)),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(CustomAssets.devgenius),
                   ),
-                ),
-                Spacer(),
-              ],
+                  onPressed: onShowCreditClick),
             ),
           ),
+          Spacer(),
+          Container(
+            height: 80,
+            width: 80,
+            child: FittedBox(
+                fit: BoxFit.cover,
+                child: NeumorphicButton(
+                    style: NeumorphicStyle(
+                        boxShape: NeumorphicBoxShape.circle(),
+                        color: Color.fromRGBO(248, 247, 247, 1)),
+                child: Icon(
+                  Icons.share_outlined,
+                  color: CustomColors.darkBlue,
+                ),
+                onPressed: onShareClick),
+          ),
         ),
-        Spacer()
       ],
+    ),
+    ),
+    Expanded(
+    flex: 6,
+    child: Padding(
+    padding: EdgeInsets.all(25),
+    child: Row(
+    children: [
+    Spacer(),
+    Expanded(
+    flex: 7,
+    child: Neumorphic(
+    style: NeumorphicStyle(
+    boxShape: NeumorphicBoxShape.roundRect(
+    BorderRadius.circular(65)),
+    color: Colors.white),
+    child: Padding(
+    padding: const EdgeInsets.only(left: 30, bottom: 20),
+    child: Row(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+    Expanded(
+    flex: 4,
+    child: SingleChildScrollView(
+    child: Padding(
+    padding: const EdgeInsets.only(right: 25),
+    child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    SongInfo(),
+    SizedBox(
+    height: 20,
+    ),
+    Container(
+    constraints:
+    BoxConstraints(maxWidth: 400),
+    child: Controls()),
+    ],
+    ),
+    ),
+    ),
+    ),
+    SizedBox(width: 30),
+    Expanded(
+    flex: 6,
+    child: Padding(
+    padding:
+    const EdgeInsets.fromLTRB(0, 50, 50, 50),
+    child: Playlist()),
+    ),
+    ],
+    ),
+    ),
+    ),
+    ),
+    Spacer(),
+    ],
+    ),
+    ),
+    ),
+    Spacer(
+    )
+    ]
+    ,
     );
   }
 }

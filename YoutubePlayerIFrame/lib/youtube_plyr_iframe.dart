@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'src/controller.dart';
 import 'src/helpers/youtube_value_provider.dart';
 
-import 'src/players/youtube_player_web.dart';
+import 'src/players/youtube_player_mobile.dart'
+if (dart.library.html) 'src/players/youtube_player_web.dart';
 
 export 'src/controller.dart';
 export 'src/enums/playback_rate.dart';
