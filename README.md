@@ -13,8 +13,8 @@ The amazing Genius Radio -> https://geniusradio.web.app <br>
 
 # Run
 
-- DEV -> _flutter run -d chrome -t lib/dev/main.dart_
-- PROD -> _flutter run -d chrome -t lib/prod/main.dart_
+- DEV -> _flutter run -d chrome --web-renderer html -t lib/dev/main.dart_
+- PROD -> _flutter run -d chrome --web-renderer html -t lib/prod/main.dart_
 
 # Build
 
