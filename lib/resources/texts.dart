@@ -1,6 +1,6 @@
 class CustomTexts {
   static String emanuelDescription =
-      "Amo i Computer e Programmare. Ho realizzato il mio sogno co-fondando DevGenius.it e creando un fantastico team che ci permette di aiutare quotidianamente i nostri clienti!";
+      "I love Computers and Programming. I made my dream come true by co-founding DevGenius.it and creating a fantastic team that allows us to help our customers on a daily basis!";
   static String giorgioDescription =
       "Public speaker in italian tech community. Recently I've done some talks about git, docker, communities and frontend ecosystem. Author and maintainer of open source project VsCode Jira Plugin.";
   static String francescoDescription =
